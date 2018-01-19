@@ -22,4 +22,10 @@
     <string name="submit_button">Submit answers</string>
     <string name="reset_button">Reset all answers</string>
     <string name="hint_question_two">Gas</string>
+    <string name="toast_general"> answers right!</string>
+    <string name="toast0">Are you joking? Get out of here!</string>
+    <string name="toast1_2">Your life saving skills need a little improvement</string>
+    <string name="toast3_4">You are nearly a professional but maybe you should refresh your knowledge?</string>
+    <string name="toast5">Wow! You will know what to do in any situation!</string>
+    <string name="toast_thank_you">Thank you for participating!</string>
 </resources>
