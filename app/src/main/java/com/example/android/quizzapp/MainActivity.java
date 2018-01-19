@@ -45,22 +45,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Checks if question two is right and sets the variables
-    public void questionTwo() {
+    public boolean questionTwo(View view) {
         EditText gas_editText = (EditText) (findViewById(R.id.gas_editText));
         String gasName = gas_editText.getText().toString();
         if (gasName.equalsIgnoreCase("Oxygen")) {
             isRightTwo = true;
         }
-        return;
+        return isRightTwo;
     }
 
 
     //Checks if question three is right and sets the variables
-    public void questionThree() {
+    public boolean questionThree(View view) {
         CheckBox front = (CheckBox) (findViewById(R.id.front_checkBox));
         CheckBox back = (CheckBox) (findViewById(R.id.back_checkBox));
         isRightThree = (front.isChecked() && back.isChecked());
-        return;
+        return isRightThree;
     }
 
     //Checks if question four is right and sets the variables
@@ -114,14 +114,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void reset(View view) {
-        boolean isRightOne = false;
-        boolean isRightTwo = false;
-        boolean isRightThree = false;
-        boolean isRightFour = false;
-        boolean isRightFive = false;
-        int numberRightAnswers = 0;
-        return;
+    public int reset(View view) {
+               int numberRightAnswers = 0;
+        return numberRightAnswers;
     }
 }
 
@@ -132,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
 //}
 // get variable status and thus answer status all the time . on click evaluate
 // toast zusammenfassen
+//question three not true when other checkboxes are checked
 
 //Check for name conventions
 

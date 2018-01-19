@@ -56,7 +56,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/answer_margin_bottom"
             android:layout_marginTop="@dimen/answer_margin_top"
-            android:hint="@string/hint_question_two" />
+            android:hint="@string/hint_question_two"
+            android:onClick="questionTwo"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -67,11 +68,12 @@
             android:textColor="@android:color/black" />
 
         <CheckBox
-            android:id="@+id/front_checkBox"
+            android:id="@+id/back_checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/answer_margin_top"
-            android:text="@string/answer_three_back" />
+            android:text="@string/answer_three_back"
+            android:onClick="questionThree"/>
 
         <CheckBox
             android:id="@+id/not_checkBox"
@@ -86,11 +88,12 @@
             android:text="@string/answer_three_without" />
 
         <CheckBox
-            android:id="@+id/back_checkBox"
+            android:id="@+id/front_checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/answer_margin_bottom"
-            android:text="@string/answer_three_front" />
+            android:text="@string/answer_three_front"
+            android:onClick="questionThree"/>
 
         <TextView
             android:layout_width="match_parent"
