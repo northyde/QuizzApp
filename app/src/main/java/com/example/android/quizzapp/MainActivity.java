@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     int numberRightAnswers = 0;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         actionBar.hide();
         setContentView(R.layout.activity_main);
     }
-
 
 
     //Checks if question one is right and sets the variables
@@ -49,12 +47,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     //Checks if question three is right and sets the variables
     public boolean questionThree(View view) {
         CheckBox front = (CheckBox) (findViewById(R.id.front_checkBox));
         CheckBox back = (CheckBox) (findViewById(R.id.back_checkBox));
-        CheckBox not = (CheckBox) (findViewById(R.id.not_checkBox)) ;
+        CheckBox not = (CheckBox) (findViewById(R.id.not_checkBox));
         CheckBox nothing = (CheckBox) (findViewById(R.id.nothing_checkBox));
         isRightThree = (front.isChecked() && back.isChecked() && !not.isChecked() && !nothing.isChecked());
         return isRightThree;
@@ -84,12 +81,11 @@ public class MainActivity extends AppCompatActivity {
 
     //Evaluation
     public void evaluation(View view) {
-       numberRightAnswers = 0;
+        numberRightAnswers = 0;
         if (isRightOne) numberRightAnswers++;
         EditText gas_editText = (EditText) (findViewById(R.id.gas_editText));
         String gasName = gas_editText.getText().toString();
-
-        if (gasName.equalsIgnoreCase("Oxygen"))
+        if (gasName.equalsIgnoreCase(getString(R.string.answer_two)))
             isRightTwo = true;
         if (isRightTwo) numberRightAnswers++;
         if (isRightThree) numberRightAnswers++;
@@ -102,27 +98,29 @@ public class MainActivity extends AppCompatActivity {
     public void displayToast(int numberRightAnswers) {
 
         if (numberRightAnswers == 5) {
-            Toast professionalToast = Toast.makeText(this, "Test Toast " + numberRightAnswers, Toast.LENGTH_SHORT);
+            Toast professionalToast = Toast.makeText(this, numberRightAnswers + " " + getString(R.string.toast_general) +
+                    " " + getString(R.string.toast5), Toast.LENGTH_LONG);
             professionalToast.show();
         } else if (numberRightAnswers > 2 && numberRightAnswers < 5) {
-            Toast nearlyToast = Toast.makeText(this, "Test Toast " + numberRightAnswers, Toast.LENGTH_SHORT);
+            Toast nearlyToast = Toast.makeText(this, numberRightAnswers + " " + getString(R.string.toast_general)+
+                    " " + getString(R.string.toast3_4), Toast.LENGTH_LONG);
             nearlyToast.show();
         } else if (numberRightAnswers > 0 && numberRightAnswers < 3) {
-            Toast improvementToast = Toast.makeText(this, "Test Toast " + numberRightAnswers, Toast.LENGTH_SHORT);
-            improvementToast.setGravity(Gravity.TOP, 0, 0);
+            Toast improvementToast = Toast.makeText(this, numberRightAnswers + " " + getString(R.string.toast_general)+
+                    " " + getString(R.string.toast1_2), Toast.LENGTH_LONG);
             improvementToast.show();
         } else {
-            Toast zeroToast = Toast.makeText(this, "Test Toast " + numberRightAnswers, Toast.LENGTH_SHORT);
+            Toast zeroToast = Toast.makeText(this, numberRightAnswers + " " + getString(R.string.toast_general)+
+                    " " + getString(R.string.toast0), Toast.LENGTH_LONG);
             zeroToast.show();
         }
     }
 
     public int reset(View view) {
-               int numberRightAnswers = 0;
-
+        int numberRightAnswers = 0;
         CheckBox front = (CheckBox) (findViewById(R.id.front_checkBox));
         CheckBox back = (CheckBox) (findViewById(R.id.back_checkBox));
-        CheckBox not = (CheckBox) (findViewById(R.id.not_checkBox)) ;
+        CheckBox not = (CheckBox) (findViewById(R.id.not_checkBox));
         CheckBox nothing = (CheckBox) (findViewById(R.id.nothing_checkBox));
         if (front.isChecked()) front.toggle();
         if (back.isChecked()) back.toggle();
@@ -146,9 +144,8 @@ public class MainActivity extends AppCompatActivity {
 }
 
 
-
 // toast zusammenfassen
-//question three not true when other checkboxes are checked
+
 
 //Check for name conventions
 
