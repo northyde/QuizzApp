@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     boolean isRightFour = false;
     boolean isRightFive = false;
     int numberRightAnswers = 0;
+
 
 
     @Override
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+
+
     //Checks if question one is right and sets the variables
     public boolean questionOneRight(View view) {
         isRightOne = true;
@@ -44,22 +48,15 @@ public class MainActivity extends AppCompatActivity {
         return isRightOne;
     }
 
-    //Checks if question two is right and sets the variables
-    public boolean questionTwo(View view) {
-        EditText gas_editText = (EditText) (findViewById(R.id.gas_editText));
-        String gasName = gas_editText.getText().toString();
-        if (gasName.equalsIgnoreCase("Oxygen")) {
-            isRightTwo = true;
-        }
-        return isRightTwo;
-    }
 
 
     //Checks if question three is right and sets the variables
     public boolean questionThree(View view) {
         CheckBox front = (CheckBox) (findViewById(R.id.front_checkBox));
         CheckBox back = (CheckBox) (findViewById(R.id.back_checkBox));
-        isRightThree = (front.isChecked() && back.isChecked());
+        CheckBox not = (CheckBox) (findViewById(R.id.not_checkBox)) ;
+        CheckBox nothing = (CheckBox) (findViewById(R.id.nothing_checkBox));
+        isRightThree = (front.isChecked() && back.isChecked() && !not.isChecked() && !nothing.isChecked());
         return isRightThree;
     }
 
@@ -74,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         return isRightFour;
     }
 
-    //Checks if question four is right and sets the variables
+    //Checks if question five is right and sets the variables
     public boolean questionFiveWrong(View view) {
         isRightFive = false;
         return isRightFive;
@@ -87,7 +84,13 @@ public class MainActivity extends AppCompatActivity {
 
     //Evaluation
     public void evaluation(View view) {
+       numberRightAnswers = 0;
         if (isRightOne) numberRightAnswers++;
+        EditText gas_editText = (EditText) (findViewById(R.id.gas_editText));
+        String gasName = gas_editText.getText().toString();
+
+        if (gasName.equalsIgnoreCase("Oxygen"))
+            isRightTwo = true;
         if (isRightTwo) numberRightAnswers++;
         if (isRightThree) numberRightAnswers++;
         if (isRightFour) numberRightAnswers++;
@@ -99,33 +102,51 @@ public class MainActivity extends AppCompatActivity {
     public void displayToast(int numberRightAnswers) {
 
         if (numberRightAnswers == 5) {
-            Toast professionalToast = Toast.makeText(this, "Test Toast 5", Toast.LENGTH_SHORT);
+            Toast professionalToast = Toast.makeText(this, "Test Toast " + numberRightAnswers, Toast.LENGTH_SHORT);
             professionalToast.show();
         } else if (numberRightAnswers > 2 && numberRightAnswers < 5) {
-            Toast nearlyToast = Toast.makeText(this, "Test Toast 3 or 4", Toast.LENGTH_SHORT);
+            Toast nearlyToast = Toast.makeText(this, "Test Toast " + numberRightAnswers, Toast.LENGTH_SHORT);
             nearlyToast.show();
-        } else if (numberRightAnswers > 1 && numberRightAnswers < 3) {
-            Toast improvementToast = Toast.makeText(this, "Test Toast 1 or 2", Toast.LENGTH_SHORT);
+        } else if (numberRightAnswers > 0 && numberRightAnswers < 3) {
+            Toast improvementToast = Toast.makeText(this, "Test Toast " + numberRightAnswers, Toast.LENGTH_SHORT);
             improvementToast.setGravity(Gravity.TOP, 0, 0);
             improvementToast.show();
         } else {
-            Toast zeroToast = Toast.makeText(this, "Test Toast 0", Toast.LENGTH_SHORT);
+            Toast zeroToast = Toast.makeText(this, "Test Toast " + numberRightAnswers, Toast.LENGTH_SHORT);
             zeroToast.show();
         }
     }
 
     public int reset(View view) {
                int numberRightAnswers = 0;
+
+        CheckBox front = (CheckBox) (findViewById(R.id.front_checkBox));
+        CheckBox back = (CheckBox) (findViewById(R.id.back_checkBox));
+        CheckBox not = (CheckBox) (findViewById(R.id.not_checkBox)) ;
+        CheckBox nothing = (CheckBox) (findViewById(R.id.nothing_checkBox));
+        if (front.isChecked()) front.toggle();
+        if (back.isChecked()) back.toggle();
+        if (not.isChecked()) not.toggle();
+        if (nothing.isChecked()) nothing.toggle();
+        EditText gas_editText = (EditText) (findViewById(R.id.gas_editText));
+        gas_editText.setText("");
+        isRightOne = false;
+        isRightTwo = false;
+        isRightThree = false;
+        isRightFour = false;
+        isRightFive = false;
+        RadioGroup groupOne = (RadioGroup) (findViewById(R.id.questionOneGroup));
+        groupOne.clearCheck();
+        RadioGroup groupFour = (RadioGroup) (findViewById(R.id.questionFourGroup));
+        groupFour.clearCheck();
+        RadioGroup groupFive = (RadioGroup) (findViewById(R.id.questionFiveGroup));
+        groupFive.clearCheck();
         return numberRightAnswers;
     }
 }
 
 
-// ignore case in answer two
-// if (userName.trim().equalsIgnoreCase(resultString.trim())) {
-// return true;
-//}
-// get variable status and thus answer status all the time . on click evaluate
+
 // toast zusammenfassen
 //question three not true when other checkboxes are checked
 
